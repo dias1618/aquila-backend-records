@@ -38,7 +38,7 @@ export class YoutubeApiService implements RepositoryVideo{
     async loadVideos(categoria:Categoria):Promise<Video[]>{
 
         try{
-            await this.config.verifyToken();
+            //await this.config.verifyToken();
 
             let videos:Video[] = [];
             
@@ -78,7 +78,7 @@ export class YoutubeApiService implements RepositoryVideo{
 
     async getCanal(channelId:string):Promise<Canal>{
         try{
-            await this.config.verifyToken();
+            //await this.config.verifyToken();
 
             let accessKey = this.config.loadParam('access_key');
             let response = await this.axios.get(

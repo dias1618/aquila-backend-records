@@ -6,7 +6,9 @@ import { RepositoryService } from "./repository.service";
 @Injectable()
 export class CategoriaService{
 
-    constructor(public repositoryService:RepositoryService){}
+    constructor(
+        public repositoryService:RepositoryService,
+    ){}
 
     async save(categoria:Categoria){
         await categoria.save();
@@ -26,9 +28,14 @@ export class CategoriaService{
     async loadCategoriasFromRepositories(){
         let categorias:Categoria[] = await this.repositoryService.loadCategorias();
         for(let categoria of categorias){
-            this.save(categoria);
+            if(!(await this.categoriaExistente(categoria)))
+                this.save(categoria);
         }
+    }
 
+    async categoriaExistente(categoria:Categoria):Promise<boolean>{
+        let categoriaBuscada:Categoria = await this.getByIdPlatform(categoria.idPlatform);
+        return categoriaBuscada!=undefined && categoriaBuscada!=null;
     }
 
 }
