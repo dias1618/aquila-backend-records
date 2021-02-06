@@ -9,14 +9,14 @@ export class RepositoryController {
       private readonly videoService: VideoService,
   ) {}
 
-  @Post('categorias')
+  @Get('categorias')
   @HttpCode(200)
   async loadCategorias() {
     await this.categoriaService.loadCategoriasFromRepositories();
     return 'Categorias carregadas';
   }
 
-  @Post('videos')
+  @Get('videos')
   @HttpCode(200)
   async loadVideos() {
     await this.videoService.loadVideosFromRepositories();
