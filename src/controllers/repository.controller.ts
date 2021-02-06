@@ -1,4 +1,4 @@
-import { Controller, Post, HttpCode } from '@nestjs/common';
+import { Controller, Post, HttpCode, Get } from '@nestjs/common';
 import { CategoriaService } from 'src/services/categoria.service';
 import { VideoService } from 'src/services/video.service';
 
