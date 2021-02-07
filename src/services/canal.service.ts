@@ -18,7 +18,7 @@ export class CanalService{
             .getOne();
         if(!canal){
             canal = await this.repositoryService.getCanal(channelId)
-            //await this.save(canal);
+            await this.save(canal);
         }
         return canal;
     }
