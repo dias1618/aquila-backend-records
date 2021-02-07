@@ -6,12 +6,7 @@ import { AxiosCommunicationService } from './services/external-communication/axi
 import { RepositoryController } from './controllers/repository.controller';
 import { CanalService } from './services/canal.service';
 import { CategoriaService } from './services/categoria.service';
-import { RepositoryService } from './services/repository.service';
 import { VideoService } from './services/video.service';
-import { YoutubeApiService } from './services/video-api/youtube-api/youtube-api.service';
-import { ConfigManagerService } from './services/video-api/youtube-api/config-manager.service';
-import { Handling } from './services/video-api/handling.interface';
-import { InvalidTokenHandling } from './services/video-api/youtube-api/invalid-token-handling';
 
 @Module({
   imports: [TypeOrmModule.forRoot()],
@@ -24,15 +19,8 @@ import { InvalidTokenHandling } from './services/video-api/youtube-api/invalid-t
     AxiosCommunicationService,
     CanalService,
     CategoriaService,
-    RepositoryService,
     VideoService,
-    YoutubeApiService,
-    ConfigManagerService,
     AxiosCommunicationService,
-    {
-      provide: Handling,
-      useClass: InvalidTokenHandling
-    },
     
   ],
 })

@@ -1,12 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { Canal } from "src/entities/canal.entity";
 import { getRepository } from "typeorm";
-import { RepositoryService } from "./repository.service";
 
 @Injectable()
 export class CanalService{
-
-    constructor(public repositoryService:RepositoryService){}
 
     async save(canal:Canal):Promise<Canal>{
         return await canal.save();
@@ -18,7 +15,6 @@ export class CanalService{
             .getOne();
 
         if(!canal){
-            canal = await this.repositoryService.getCanal(channelId)
             canal = await this.save(canal);
         }
         return canal;

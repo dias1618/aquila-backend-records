@@ -1,14 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { Categoria } from "src/entities/categoria.entity";
 import { getRepository } from "typeorm";
-import { RepositoryService } from "./repository.service";
 
 @Injectable()
 export class CategoriaService{
-
-    constructor(
-        public repositoryService:RepositoryService,
-    ){}
 
     async save(categoria:Categoria):Promise<Categoria>{
         return await categoria.save();
@@ -23,19 +18,6 @@ export class CategoriaService{
         return await getRepository(Categoria).createQueryBuilder('categoria')
             .where("categoria.idPlatform = :idPlatform", {idPlatform: idPlatform})
             .getOne();
-    }
-
-    async loadCategoriasFromRepositories():Promise<number>{
-        let quantidade:number = 0;
-        let categorias:Categoria[] = await this.repositoryService.loadCategorias();
-        for(let categoria of categorias){
-            if(!(await this.categoriaExistente(categoria))){
-                categoria = await this.save(categoria);
-                console.log(`[records] Categoria cadastrada: ${categoria.nome}`);
-                quantidade++;
-            }
-        }
-        return quantidade;
     }
 
     async categoriaExistente(categoria:Categoria):Promise<boolean>{
