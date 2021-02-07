@@ -13,17 +13,13 @@ export class CanalService{
     }
 
     async get(channelId:string):Promise<Canal>{
-        console.log('channelId = ', channelId)
         let canal:Canal = await getRepository(Canal).createQueryBuilder('canal')
             .where("canal.idPlatform = :idPlatform", {idPlatform: channelId})
             .getOne();
-        console.log('canal = ', canal);
         if(!canal){
-            console.log('entrou')
             canal = await this.repositoryService.getCanal(channelId)
-            await this.save(canal);
+            //await this.save(canal);
         }
-        console.log();
         return canal;
     }
 
