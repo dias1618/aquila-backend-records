@@ -29,7 +29,6 @@ export class VideoService{
                 let ret = await this.getByIdPlatform(video.idPlatform);
                 if(!ret){
                     idCanais = this.adicionarSemRepeticao(idCanais, video.channelId);
-                    //video.canal = await this.canalService.get(video.channelId);
                     video.categoria = await this.categoriaService.getByIdPlatform(video.categoryId);
                     await this.save(video);
                 }
@@ -37,7 +36,7 @@ export class VideoService{
         }
 
         for(let idCanal of idCanais){
-            let canal:Canal = await this.canalService.get(idCanal);
+            await this.canalService.get(idCanal);
         }
     }
 
