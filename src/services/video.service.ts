@@ -16,11 +16,12 @@ export class VideoService{
         public categoriaService:CategoriaService,
     ){}
 
-    async save(video:Video){
-        await video.save();
+    async save(video:Video):Promise<Video>{
+        return await video.save();
     }
 
-    async loadVideosFromRepositories(){
+    async loadVideosFromRepositories():Promise<number>{
+        let quantidade:number = 0;
         let idCanais:string[] = [];
         let categorias:Categoria[] = await this.categoriaService.get();
         for(let categoria of categorias){
@@ -30,14 +31,19 @@ export class VideoService{
                 if(!ret){
                     idCanais = this.adicionarSemRepeticao(idCanais, video.channelId);
                     video.categoria = await this.categoriaService.getByIdPlatform(video.categoryId);
-                    await this.save(video);
+                    video = await this.save(video);
+                    console.log(`[records] Video cadastrado: ${video.descricao}`);
+                    quantidade++;
                 }
             }
         }
 
         for(let idCanal of idCanais){
-            await this.canalService.get(idCanal);
+            let canal:Canal = await this.canalService.get(idCanal);
+            console.log(`[records] Canal cadastrado: ${canal.titulo}`);
         }
+
+        return quantidade;
     }
 
     adicionarSemRepeticao(idCanais:string[], novoId:string):string[]{

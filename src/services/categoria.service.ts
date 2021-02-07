@@ -10,8 +10,8 @@ export class CategoriaService{
         public repositoryService:RepositoryService,
     ){}
 
-    async save(categoria:Categoria){
-        await categoria.save();
+    async save(categoria:Categoria):Promise<Categoria>{
+        return await categoria.save();
     }
 
     async get():Promise<Categoria[]>{
@@ -25,12 +25,17 @@ export class CategoriaService{
             .getOne();
     }
 
-    async loadCategoriasFromRepositories(){
+    async loadCategoriasFromRepositories():Promise<number>{
+        let quantidade:number = 0;
         let categorias:Categoria[] = await this.repositoryService.loadCategorias();
         for(let categoria of categorias){
-            if(!(await this.categoriaExistente(categoria)))
-                this.save(categoria);
+            if(!(await this.categoriaExistente(categoria))){
+                categoria = await this.save(categoria);
+                console.log(`[records] Categoria cadastrada: ${categoria.nome}`);
+                quantidade++;
+            }
         }
+        return quantidade;
     }
 
     async categoriaExistente(categoria:Categoria):Promise<boolean>{

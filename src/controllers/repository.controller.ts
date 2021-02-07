@@ -12,15 +12,15 @@ export class RepositoryController {
   @Get('categorias')
   @HttpCode(200)
   async loadCategorias() {
-    await this.categoriaService.loadCategoriasFromRepositories();
-    return 'Categorias carregadas';
+    let quantidade = await this.categoriaService.loadCategoriasFromRepositories();
+    return `${quantidade} categorias carregadas`;
   }
 
   @Get('videos')
   @HttpCode(200)
   async loadVideos() {
-    await this.videoService.loadVideosFromRepositories();
-    return 'Videos carregadas';
+    let quantidade = await this.videoService.loadVideosFromRepositories();
+    return `${quantidade} videos carregados`;
   }
 
   

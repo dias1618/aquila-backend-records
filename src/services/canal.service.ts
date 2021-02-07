@@ -8,8 +8,8 @@ export class CanalService{
 
     constructor(public repositoryService:RepositoryService){}
 
-    async save(canal:Canal){
-        await canal.save();
+    async save(canal:Canal):Promise<Canal>{
+        return await canal.save();
     }
 
     async get(channelId:string):Promise<Canal>{
@@ -19,7 +19,7 @@ export class CanalService{
 
         if(!canal){
             canal = await this.repositoryService.getCanal(channelId)
-            await this.save(canal);
+            canal = await this.save(canal);
         }
         return canal;
     }
