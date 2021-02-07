@@ -71,7 +71,7 @@ export class YoutubeApiService implements RepositoryVideo{
         }
 
         catch(exception){
-            console.log(exception.response.data);
+            //console.log(exception.response.data);
         }
  
     }
@@ -103,7 +103,7 @@ export class YoutubeApiService implements RepositoryVideo{
         }
 
         catch(exception){
-            console.log(exception.response.data);
+            //console.log(exception.response.data);
         }       
     }
 
