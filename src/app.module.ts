@@ -8,13 +8,15 @@ import { CategoriaService } from './services/categoria.service';
 import { VideoService } from './services/video.service';
 import { CategoriaController } from './controllers/categoria.controller';
 import { CanalController } from './controllers/canal.controller';
+import { VideoController } from './controllers/video.controller';
 
 @Module({
   imports: [TypeOrmModule.forRoot()],
   controllers: [
     AppController,
     CategoriaController,
-    CanalController
+    CanalController,
+    VideoController
   ],
   providers: [
     AppService,
