@@ -17,12 +17,12 @@ export class CategoriaController {
   @Post()
   @HttpCode(200)
   async insert(@Body() categoria:Categoria) {
-      return await this.categoriaService.save(categoria);
+      return await this.categoriaService.save(new Categoria(categoria));
   }
 
   @Put()
   @HttpCode(200)
   async update(@Body() categoria:Categoria) {
-      return await this.categoriaService.save(categoria);
+    return await this.categoriaService.save(new Categoria(categoria));
   }
 }
