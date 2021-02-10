@@ -9,15 +9,20 @@ export class CanalService{
         return await canal.save();
     }
 
-    async get(channelId:string):Promise<Canal>{
-        let canal:Canal = await getRepository(Canal).createQueryBuilder('canal')
-            .where("canal.idPlatform = :idPlatform", {idPlatform: channelId})
-            .getOne();
+    async get():Promise<Canal[]>{
+        return await getRepository(Canal).createQueryBuilder('canal')
+            .getMany();
+    }
 
-        if(!canal){
-            canal = await this.save(canal);
-        }
-        return canal;
+    async getById(id:number):Promise<Canal>{
+        return await getRepository(Canal).createQueryBuilder('canal')
+                .where("canal.id = :id", {id: id})
+                .getOne();
+    }
+
+    async delete(id:number){
+        let canal = new Canal(await this.getById(id));
+        return canal.remove();
     }
 
 }
