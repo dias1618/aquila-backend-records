@@ -5,6 +5,5 @@
     "username": "postgres",
     "password": "1234",
     "database": "aquila",
-    "entities": ["dist/**/*.entity{.ts,.js}"],
-    "synchronize": true
+    "entities": ["dist/**/*.entity{.ts,.js}"]
 }
