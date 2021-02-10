@@ -28,7 +28,7 @@ export class CategoriaController {
 
   @Delete(':id')
   @HttpCode(200)
-  async delete(@Param() id:number) {
+  async delete(@Param('id') id:number) {
     return await this.categoriaService.delete(id);
   }
 }
