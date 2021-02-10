@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Post, Body, Put } from "@nestjs/common";
+import { Controller, Get, HttpCode, Post, Body, Put, Delete, Param } from "@nestjs/common";
 import { CategoriaService } from "src/services/categoria.service";
 import { Categoria } from "src/entities/categoria.entity";
 
@@ -24,5 +24,11 @@ export class CategoriaController {
   @HttpCode(200)
   async update(@Body() categoria:Categoria) {
     return await this.categoriaService.save(new Categoria(categoria));
+  }
+
+  @Delete()
+  @HttpCode(200)
+  async delete(@Param() id:number) {
+    return await this.categoriaService.delete(id);
   }
 }

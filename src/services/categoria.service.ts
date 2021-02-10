@@ -14,6 +14,12 @@ export class CategoriaService{
             .getMany();
     }
 
+    async getById(id:number):Promise<Categoria>{
+        return await getRepository(Categoria).createQueryBuilder('categoria')
+                .where("categoria.id = :id", {id: id})
+                .getOne();
+    }
+
     async getByIdPlatform(idPlatform:number):Promise<Categoria>{
         return await getRepository(Categoria).createQueryBuilder('categoria')
             .where("categoria.idPlatform = :idPlatform", {idPlatform: idPlatform})
@@ -23,6 +29,11 @@ export class CategoriaService{
     async categoriaExistente(categoria:Categoria):Promise<boolean>{
         let categoriaBuscada:Categoria = await this.getByIdPlatform(categoria.idPlatform);
         return categoriaBuscada!=undefined && categoriaBuscada!=null;
+    }
+
+    async delete(id:number){
+        let categoria = new Categoria(await this.getById(id));
+        return categoria.remove();
     }
 
 }
