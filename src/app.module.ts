@@ -9,6 +9,7 @@ import { VideoService } from './services/video.service';
 import { CategoriaController } from './controllers/categoria.controller';
 import { CanalController } from './controllers/canal.controller';
 import { VideoController } from './controllers/video.controller';
+import { UsuarioService } from './services/usuario.service';
 
 @Module({
   imports: [TypeOrmModule.forRoot()],
@@ -16,7 +17,8 @@ import { VideoController } from './controllers/video.controller';
     AppController,
     CategoriaController,
     CanalController,
-    VideoController
+    VideoController,
+    UsuarioService
   ],
   providers: [
     AppService,
@@ -25,7 +27,7 @@ import { VideoController } from './controllers/video.controller';
     CategoriaService,
     VideoService,
     AxiosCommunicationService,
-    
+    UsuarioService
   ],
 })
 export class AppModule {}
