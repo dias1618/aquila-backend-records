@@ -8,7 +8,7 @@ import { UsuarioVideo } from "./usuario-video.entity";
 @Entity()
 export class Video extends BaseEntity{
 
-    constructor(data: {id?:number, titulo?:string, descricao?:string, idPlatform?:string, url?:string, midia?:Midia, duracao?:string, criado?:Date, urlImage?:string}){
+    constructor(data: {id?:number, titulo?:string, descricao?:string, idPlatform?:string, url?:string, midia?:Midia, duracao?:string, criado?:Date, urlImage?:string, canal?:Canal}){
         super();
         this.id = data && data.id || 0; 
         this.titulo = data && data.titulo || "";
@@ -19,6 +19,7 @@ export class Video extends BaseEntity{
         this.duracao = data && data.duracao || '';
         this.criado = data && data.criado || null;
         this.urlImage = data && data.urlImage || "";
+        this.canal = data && data.canal || null;
     }
 
     @PrimaryGeneratedColumn()

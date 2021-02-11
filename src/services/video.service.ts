@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { Video } from "src/entities/video.entity";
 import { getRepository } from "typeorm";
+import { Categoria } from "src/entities/categoria.entity";
 
 @Injectable()
 export class VideoService{
@@ -11,6 +12,8 @@ export class VideoService{
 
     async get():Promise<Video[]>{
         return await getRepository(Video).createQueryBuilder('video')
+            .leftJoinAndSelect('video.categoria', 'categoria')
+            .leftJoinAndSelect('video.canal', 'canal')
             .getMany();
     }
 
