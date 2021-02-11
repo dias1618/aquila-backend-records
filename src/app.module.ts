@@ -10,6 +10,7 @@ import { CategoriaController } from './controllers/categoria.controller';
 import { CanalController } from './controllers/canal.controller';
 import { VideoController } from './controllers/video.controller';
 import { UsuarioService } from './services/usuario.service';
+import { UsuarioController } from './controllers/usuario.controller';
 
 @Module({
   imports: [TypeOrmModule.forRoot()],
@@ -18,7 +19,7 @@ import { UsuarioService } from './services/usuario.service';
     CategoriaController,
     CanalController,
     VideoController,
-    UsuarioService
+    UsuarioController
   ],
   providers: [
     AppService,
