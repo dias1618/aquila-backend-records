@@ -26,7 +26,7 @@ export class CategoriaService{
     }
 
     async delete(id:number){
-        this._categoriaDeleteValidator.validate(id);
+        await this._categoriaDeleteValidator.validate(id);
         let categoria = new Categoria(await this.getById(id));
         return categoria.remove();
     }

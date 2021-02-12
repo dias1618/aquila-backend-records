@@ -12,6 +12,7 @@ import { VideoController } from './controllers/video.controller';
 import { UsuarioService } from './services/usuario.service';
 import { UsuarioController } from './controllers/usuario.controller';
 import { CategoriaDeleteValidator } from './validators/categoria-delete.validator';
+import { CanalDeleteValidator } from './validators/canal-delete.validator';
 
 @Module({
   imports: [TypeOrmModule.forRoot()],
@@ -30,7 +31,8 @@ import { CategoriaDeleteValidator } from './validators/categoria-delete.validato
     VideoService,
     AxiosCommunicationService,
     UsuarioService,
-    CategoriaDeleteValidator
+    CategoriaDeleteValidator,
+    CanalDeleteValidator
   ],
 })
 export class AppModule {}
